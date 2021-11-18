@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../components/Button"
+import { Button } from "src/components/Button"
 const FieldContainer = styled(motion.label)`
   display: inline-block;
   width: 100%;

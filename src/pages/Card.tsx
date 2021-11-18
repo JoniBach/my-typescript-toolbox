@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Button, Form, Input, Output } from "../components";
+import { Button, Form, Input, Output } from "src/components";
 import { form, FormContext, FormProvider } from "../contexts/form-context";
 
 import blank from "../utils/CardImages/yugioh-card-template_base.png";
@@ -20,7 +20,7 @@ import earth from "../utils/CardImages/EARTH.png";
 import wind from "../utils/CardImages/WIND.png";
 import water from "../utils/CardImages/WATER.png";
 import fire from "../utils/CardImages/FIRE.png";
-import { Checkbox } from "../components/Checkbox";
+import { Checkbox } from "src/components/Checkbox";
 
 const PageContainer = styled(motion.div)``;
 const Div = styled(motion.div)``;

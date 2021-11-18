@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Input, Output } from "../components";
+import { Button, Input, Output } from "src/components";
 import {
   FormContext,
   FormProvider,
