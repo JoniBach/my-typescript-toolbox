@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Input, Output } from "src/components";
-import { form, FormContext, FormProvider } from "../contexts/form-context";
 import { Chart } from "src/components/Chart";
 import { config, data, data01, pieConfig } from "src/configs/charts";
 
@@ -25,8 +24,6 @@ const options = [
 export const Charts = () => {
   const [chartType, setChartType] = useState<string>("line");
 
-
-  // const handleChart = (data: any, config: any) => {};
   return (
     <PageContainer>
       {chartType === "pie" ? (

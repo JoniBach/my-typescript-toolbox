@@ -2,11 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Input, Output } from "src/components";
-import {
-    form,
-    FormContext,
-    FormProvider,
-} from "../contexts/form-context";
+
 import { layout } from "src/configs/test";
 
 const PageContainer = styled(motion.div)``;
@@ -20,8 +16,6 @@ interface Props {
 // console.log(useForm())
 
 export const Test = () => {
-
-
     return (
         <PageContainer>
             {/* <button onClick={() => form({key: 'test', data: ['another test']}).create()}>test</button> */}

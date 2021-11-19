@@ -69,7 +69,6 @@ const InputType = ({ label, value, onChange, type }: InputProps) => {
     const file = e.target.files[0]
     setstate(file)
   }
-  console.log(state)
 
   useEffect(() => {
     if (state) {

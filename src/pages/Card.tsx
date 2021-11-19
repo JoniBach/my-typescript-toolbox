@@ -2,16 +2,12 @@ import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Input, Output } from "src/components";
-import { form, FormContext, FormProvider } from "../contexts/form-context";
-
 import blank from "../utils/CardImages/yugioh-card-template_base.png";
 import trapFilter from "../utils/CardImages/yugioh-card-template_trap.png";
 import spellFilter from "../utils/CardImages/yugioh-card-template_spell.png";
 import monsterFilter from "../utils/CardImages/yugioh-card-template_monster.png";
 import star from "../utils/CardImages/star.png";
-
 import html2canvas from "html2canvas";
-
 import dark from "../utils/CardImages/DARK.png";
 import light from "../utils/CardImages/LIGHT.png";
 import trap from "../utils/CardImages/TRAP.png";

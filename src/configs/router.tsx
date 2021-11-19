@@ -1,4 +1,4 @@
-import { Card, Skate, Test, Charts } from "src/pages";
+import { Card, Skate, Test, Charts, FormBuilder } from "src/pages";
 
 export const routes = [
     {
@@ -22,9 +22,9 @@ export const routes = [
       label: "Charts",
     },
     {
-      component: <Test />,
+      component: <FormBuilder />,
       link: "/form-builder",
-      label: "FormBuilder",
+      label: "Form Builder",
     },
   ];
 

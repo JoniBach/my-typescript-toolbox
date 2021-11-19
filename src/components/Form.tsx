@@ -2,18 +2,19 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import { Button, Input } from ".";
-import { FormContext, FormProvider } from "../contexts/form-context";
 
 
-const FormContainer = styled(motion.div)`
+const FormContainer = styled(motion.form)`
 
 `;
 
 type FormProps = {
   layoutData: any;
+  values?: any;
+  onSubmit?: any;
 }
 
-const FormComponents = ({ layoutData }: FormProps) => {
+const FormComponents = ({ layoutData, values, onSubmit }: FormProps) => {
   // TODO: dynamically set this state and pass it back up
 
   const Multi = (input: any) => {
@@ -54,9 +55,9 @@ export const Form = ({ layoutData }: FormProps) => {
 
   return (
     <FormContainer>
-      <FormProvider>
+      {/* <FormProvider> */}
         <FormComponents layoutData={layoutData} />
-      </FormProvider>
+      {/* </FormProvider> */}
     </FormContainer>
   );
 };
