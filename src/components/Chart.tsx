@@ -35,6 +35,7 @@ const ChartContainer = styled(motion.div)`
 type ChartProps = {
   data: any;
   config: any;
+  type: any; 
 };
 
 type GetChartProps = {
@@ -48,8 +49,8 @@ type GetChartProps = {
   outerRadius: number;
 };
 
-export const Chart = ({ data, config }: ChartProps) => {
-  const { items, xKey, type } = config;
+export const Chart = ({ data, config, type }: ChartProps) => {
+  const { items, xKey} = config;
   const [chartContent, setChartContent] = useState(defaultChartContent);
 
   const GetChartGraphic = (item: any) => {
@@ -165,7 +166,6 @@ export const Chart = ({ data, config }: ChartProps) => {
     width,
     height,
     margin,
-    type,
     dataKey,
     stroke,
     outerRadius,

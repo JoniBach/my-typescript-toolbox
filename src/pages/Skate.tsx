@@ -1,11 +1,8 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Input, Output } from "src/components";
-import {
-  FormContext,
-  FormProvider,
-} from "../contexts/form-context";
+import { Input, Output } from "src/components";
+
 
 const PageContainer = styled(motion.div)``;
 
@@ -13,10 +10,7 @@ const PageContainer = styled(motion.div)``;
 //   children: React.ReactNode;
 // }
 
-const dimensions = [
-  { key: "Height", type: "number" },
-  { key: "Shoe Size", type: "number" },
-];
+
 
 interface Props {
   height: number;
