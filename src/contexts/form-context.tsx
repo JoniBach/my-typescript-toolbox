@@ -1,3 +1,4 @@
+import { create } from "domain";
 import React, { FC, useContext, useState } from "react";
 import { Button, Form, Input } from "src/components";
 
@@ -31,7 +32,7 @@ export const FormProvider: FC = ({ children }) => {
 
   const renderForm = () => {
     if (edit) return BuildForm();
-    if (form.length !== 0) return <Form layoutData={form} />;
+    if (form.length !== 0) return <Form layoutData={form}/>;
   };
 
   const resetForm = () => {
@@ -58,27 +59,73 @@ export const FormProvider: FC = ({ children }) => {
     setEdit(false);
   };
 
-  const addField = () => {};
+  // const addField = () => {};
 
   const updateGroup = (key: any, content: any) => {
-    const final = []
-    // what we need to change
     const target = newForm.filter((item: any) => item.key === key)[0];
-    // the rest of the data
     const arr = newForm.filter((item: any) => item.key !== key);
-    // where it originally was
     const targetIndex = newForm.findIndex((item: any) => item.key === key);
-    // a new object with the updated value
-    const newObj = {...target, key: content}
-    // an array with the new object
-    arr.splice(targetIndex, 0, newObj)
-    setNewForm(arr)
+    const newObj = { ...target, key: content };
+    arr.splice(targetIndex, 0, newObj);
+    setNewForm(arr);
   };
 
+
+
   const addGroup = (key: any, e: any) => {
-    e.preventDefault()
-    setNewForm([...newForm, { key: key, data: [] }]);
+    e.preventDefault();
+    setNewForm([...newForm, { key: key, data: [{ key: "initial text 1", type: 'text' }] }]);
   };
+
+  const addField = (newKey: any, e: any) => {
+    e.preventDefault();
+
+    // isolating the group
+    const target = newForm.filter((item: any) => item.key === newKey)[0];
+    // getting the remaining array
+    const arr = newForm.filter((item: any) => item.key !== newKey);
+    // fetching the group index
+    const targetIndex = newForm.findIndex((item: any) => item.key === newKey);
+    // create the new object with a new item in an array
+    // const newObj = {
+    //   target,
+    //   data: [Object.create(target.data), { key: `new text ${target.data.length+1}`, type: 'text' }],
+
+    const newObj = { 
+      ...target, 
+      data: [
+        ...target.data,
+        { key: `new text ${ target.data.length+1}`, type: 'text' },]
+    };
+
+    // };
+    // applying the changes to the orriginal array
+    arr.splice(targetIndex, 0, newObj);
+
+console.log(arr)
+
+    // setting state
+    setNewForm(arr);
+
+
+  };
+
+  const updateField = (key: any, fieldKey: any, content: any) => {
+    // isolating the group
+    const target = newForm.filter((item: any) => item.key === key)[0];
+    // getting the remaining array
+    const arr = newForm.filter((item: any) => item.key !== key);
+    // fetching the group index
+    const targetIndex = newForm.findIndex((item: any) => item.key === key);
+    // updating the target group
+    const newObj = { ...target, key: content };
+    // applying the changes to the orriginal array
+    arr.splice(targetIndex, 0, newObj);
+    // setting state
+    setNewForm(arr);
+  };
+
+  // console.log(newForm)
 
   const BuildForm = () => {
     return (
@@ -92,13 +139,33 @@ export const FormProvider: FC = ({ children }) => {
               label="Group Name"
               type="text"
             />
+            {group?.data?.map((field: any, fieldIndex: any) => (
+              <>
+                <Input
+                  value={field.key}
+                  onChange={(e) =>
+                    updateField(group.key, field.key, e.target.value)
+                  }
+                  label="Field Name"
+                  type="text"
+                />
+              </>
+            ))}
+            <Button
+              onClick={(e) =>
+                addField(group.key, e)
+              }
+            >
+              new field
+            </Button>
+            <hr />
           </>
         ))}
         {/* <Input onChange={() => setNewForm([])} label='new' value={null} type='string'/> */}
         <Button
           onClick={(e) => addGroup(`new ${(newForm.length + 1).toString()}`, e)}
         >
-          new
+          new group
         </Button>
       </div>
     );

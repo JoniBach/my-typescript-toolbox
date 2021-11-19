@@ -59,9 +59,10 @@ type InputProps = {
   label: string;
   value?: any;
   type: string;
+  dissabled?: boolean;
 }
 
-const InputType = ({ label, value, onChange, type }: InputProps) => {
+const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
   const ref = useRef(document.createElement("input"));
   const [state, setstate] = useState(null as any)
 
@@ -121,13 +122,13 @@ const InputType = ({ label, value, onChange, type }: InputProps) => {
 }
 
 
-export const Input = ({ label, value, onChange, type }: InputProps) => {
+export const Input = ({ label, value, onChange, type, dissabled }: InputProps) => {
   return (
     <FieldContainer>
       <motion.div className="label" animate={{ height: value ? 20 : 0 }}>
         <span>{label}</span>
       </motion.div>
-      {<InputType label={label} value={value} onChange={onChange} type={type} />}
+      {<InputType dissabled={dissabled} label={label} value={value} onChange={onChange} type={type} />}
       <span className="bar" />
     </FieldContainer>
   );

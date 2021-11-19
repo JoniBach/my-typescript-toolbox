@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import { Button, Input } from ".";
+import { Group } from "./Group";
 
 
 const FormContainer = styled(motion.form)`
@@ -12,6 +13,7 @@ type FormProps = {
   layoutData: any;
   values?: any;
   onSubmit?: any;
+  locked?: any;
 }
 
 const FormComponents = ({ layoutData, values, onSubmit }: FormProps) => {
@@ -37,8 +39,9 @@ const FormComponents = ({ layoutData, values, onSubmit }: FormProps) => {
 
   const MapInputs = () => {
     return layoutData.map((d: any, i: number) => (<div>
-      {d.key}
+      <Group label={d.key}>
       {d.data.map((input: any) => (GetInput(input)))}
+      </Group>
 
 
     </div>))
@@ -51,7 +54,7 @@ const FormComponents = ({ layoutData, values, onSubmit }: FormProps) => {
   );
 };
 
-export const Form = ({ layoutData }: FormProps) => {
+export const Form = ({ layoutData, locked }: FormProps) => {
 
   return (
     <FormContainer>
