@@ -1,8 +1,7 @@
-
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useState } from "react";
-  const Btn = styled(motion.button)`
+const Btn = styled(motion.button)`
   width: 100%;
   border: hidden;
   padding: 10px;
@@ -17,7 +16,6 @@ import { useState } from "react";
   background: #fff;
 
   height: 30px;
-
 
   cursor: pointer;
   &:hover .slider {
@@ -50,7 +48,7 @@ import { useState } from "react";
   }
 
   .active {
-    width: 100%
+    width: 100%;
   }
 
   span {
@@ -76,16 +74,16 @@ type ButtonProps = {
   onClick(event: React.MouseEvent<HTMLButtonElement>): void;
   active?: boolean;
   style?: any;
-}
+};
 
-
-export const Button = ({ children, onClick, active, style}: ButtonProps) => {
-    return (
-      <Btn onClick={onClick} className='active' style={style}>
-        <div className="slider" />
-        <div style={{width: active ? '100%' : '0%'}} className="active"><div className="overlay"/></div>
-        <motion.span >{children} </motion.span>
-      </Btn>
-    );
-  };
-
+export const Button = ({ children, onClick, active, style }: ButtonProps) => {
+  return (
+    <Btn onClick={onClick} className="active" style={style}>
+      <div className="slider" />
+      <div style={{ width: active ? "100%" : "0%" }} className="active">
+        <div className="overlay" />
+      </div>
+      <motion.span>{children} </motion.span>
+    </Btn>
+  );
+};

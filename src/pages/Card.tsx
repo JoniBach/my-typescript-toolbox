@@ -60,8 +60,6 @@ const TextContent = styled(motion.div)`
   width: 100%;
   height: 100%;
   top: 0;
-
-
 `;
 
 const Title = styled(motion.div)`
@@ -136,161 +134,194 @@ const Star = styled(motion.div)`
   background-image: url(${star});
 `;
 const Flex = styled(motion.div)`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const Card = () => {
-    const [attribute, setattribute] = useState('light');
-    const [filter, setfilter] = useState(monsterFilter);
+  const [attribute, setattribute] = useState("light");
+  const [filter, setfilter] = useState(monsterFilter);
 
-    useEffect(() => {
-        if (attribute === 'trap') {
-            setfilter(trapFilter)
-
-        } else if (attribute === 'spell') {
-            setfilter(spellFilter)
-
-        } else {
-            setfilter(monsterFilter)
-
-        }
-    }, [attribute])
-
-    const handleCardType = (type: string) => {
-        switch (type) {
-            case "trap":
-                return { type: type, filter: trapFilter, attribute: type };
-            case "spell":
-                return { type: type, filter: spellFilter, attribute: type };
-            case "monster":
-                return { type: type, filter: monsterFilter, attribute: attribute };
-            default:
-                return { type: "monster", filter: monsterFilter };
-        }
-    };
-
-    const handleCardAttribute = (type: string) => {
-        switch (type) {
-
-            case "dark":
-                return dark;
-            case "light":
-                return light;
-            case "spell":
-                return spell;
-            case "trap":
-                return trap;
-            case "earth":
-                return earth;
-            case "wind":
-                return wind;
-            case "water":
-                return water;
-            case "fire":
-                return fire;
-
-            default: return trap
-        }
-    };
-    const [cardType, setCardType] = useState(handleCardType(""));
-    //   "https://news.otakukart.com/wp-content/uploads/2019/07/onepunchmanblogroll-1554773020601.jpg"
-    const [art, setArt] = useState<any | null>();
-    const [description, setDescription] = useState('description');
-    const [title, setTitle] = useState("title");
-    const [atk, setAtk] = useState('');
-    const [def, setDef] = useState('');
-    const [level, setLevel] = useState(1);
-    
-    const stars: JSX.Element[] = [];
-    for (let i = 1; i <= level; i++) {
-        stars.push(<Star />);
+  useEffect(() => {
+    if (attribute === "trap") {
+      setfilter(trapFilter);
+    } else if (attribute === "spell") {
+      setfilter(spellFilter);
+    } else {
+      setfilter(monsterFilter);
     }
+  }, [attribute]);
 
-    
-    const handleSave = () => {
-        const capture = document.querySelector("#capture") as HTMLCanvasElement;
-        if (capture) {
-            html2canvas(capture).then(canvas => {
-                const newFile = canvas.toDataURL('png');
-                var a = document.createElement('a')
-                a.href = newFile;
-                a.download = title + '.png';
-                a.click();
-            });
-        }
-
+  const handleCardType = (type: string) => {
+    switch (type) {
+      case "trap":
+        return { type: type, filter: trapFilter, attribute: type };
+      case "spell":
+        return { type: type, filter: spellFilter, attribute: type };
+      case "monster":
+        return { type: type, filter: monsterFilter, attribute: attribute };
+      default:
+        return { type: "monster", filter: monsterFilter };
     }
-    const [type, setType] = useState('dragon');
-    const [effect, setEffect] = useState(true);
+  };
 
-    return (
-        <Div>
-            <CardContainer id="capture">
-                {art && <Art style={{ backgroundImage: `url(${URL.createObjectURL(art)})` }} />}
+  const handleCardAttribute = (type: string) => {
+    switch (type) {
+      case "dark":
+        return dark;
+      case "light":
+        return light;
+      case "spell":
+        return spell;
+      case "trap":
+        return trap;
+      case "earth":
+        return earth;
+      case "wind":
+        return wind;
+      case "water":
+        return water;
+      case "fire":
+        return fire;
 
-                <CardTemplate />
-                <CardFilter style={{ backgroundImage: `url(${filter})` }} />
-                <TextContent>
-                    <Title>{title}</Title>
-                    <Description>
-                        <strong>
-                            [{type}{type && '/Effect'}]
-                        </strong>
-                        <br/>
-                        {description}</Description>
-                    {cardType.type === 'monster' && <Stats>ATK/{atk} DEF/{def}</Stats>}
+      default:
+        return trap;
+    }
+  };
+  const [cardType, setCardType] = useState(handleCardType(""));
+  //   "https://news.otakukart.com/wp-content/uploads/2019/07/onepunchmanblogroll-1554773020601.jpg"
+  const [art, setArt] = useState<any | null>();
+  const [description, setDescription] = useState("description");
+  const [title, setTitle] = useState("title");
+  const [atk, setAtk] = useState("");
+  const [def, setDef] = useState("");
+  const [level, setLevel] = useState(1);
 
-                    <Attribute style={{ backgroundImage: `url(${handleCardAttribute(attribute)})` }} />
-                    <StarContainer>
-                        {cardType.type === 'monster' && stars}
-                    </StarContainer>
-                </TextContent>
-            </CardContainer>
-            Attributes
-            <Flex>
-                <Button onClick={() => setattribute('light')}>Light</Button>
-                <Button onClick={() => setattribute('dark')}>Dark</Button>
-                <Button onClick={() => setattribute('wind')}>Wind</Button>
-                <Button onClick={() => setattribute('earth')}>Earth</Button>
-                <Button onClick={() => setattribute('water')}>Water</Button>
-                <Button onClick={() => setattribute('fire')}>Fire</Button>
-                <Button onClick={() => setattribute('spell')}>Spell</Button>
-                <Button onClick={() => setattribute('trap')}>Trap</Button>
-            </Flex>
+  const stars: JSX.Element[] = [];
+  for (let i = 1; i <= level; i++) {
+    stars.push(<Star />);
+  }
 
+  const handleSave = () => {
+    const capture = document.querySelector("#capture") as HTMLCanvasElement;
+    if (capture) {
+      html2canvas(capture).then((canvas) => {
+        const newFile = canvas.toDataURL("png");
+        var a = document.createElement("a");
+        a.href = newFile;
+        a.download = title + ".png";
+        a.click();
+      });
+    }
+  };
+  const [type, setType] = useState("dragon");
+  const [effect, setEffect] = useState(true);
+
+  return (
+    <Div>
+      <CardContainer id="capture">
+        {art && (
+          <Art
+            style={{ backgroundImage: `url(${URL.createObjectURL(art)})` }}
+          />
+        )}
+
+        <CardTemplate />
+        <CardFilter style={{ backgroundImage: `url(${filter})` }} />
+        <TextContent>
+          <Title>{title}</Title>
+          <Description>
+            <strong>
+              [{type}
+              {type && "/Effect"}]
+            </strong>
             <br />
+            {description}
+          </Description>
+          {cardType.type === "monster" && (
+            <Stats>
+              ATK/{atk} DEF/{def}
+            </Stats>
+          )}
 
-            {/* <input value={inputArt} placeholder='cover art url' onChange={(e) => setInputArt(e.target.value)} />
+          <Attribute
+            style={{
+              backgroundImage: `url(${handleCardAttribute(attribute)})`,
+            }}
+          />
+          <StarContainer>{cardType.type === "monster" && stars}</StarContainer>
+        </TextContent>
+      </CardContainer>
+      Attributes
+      <Flex>
+        <Button onClick={() => setattribute("light")}>Light</Button>
+        <Button onClick={() => setattribute("dark")}>Dark</Button>
+        <Button onClick={() => setattribute("wind")}>Wind</Button>
+        <Button onClick={() => setattribute("earth")}>Earth</Button>
+        <Button onClick={() => setattribute("water")}>Water</Button>
+        <Button onClick={() => setattribute("fire")}>Fire</Button>
+        <Button onClick={() => setattribute("spell")}>Spell</Button>
+        <Button onClick={() => setattribute("trap")}>Trap</Button>
+      </Flex>
+      <br />
+      {/* <input value={inputArt} placeholder='cover art url' onChange={(e) => setInputArt(e.target.value)} />
 <button onClick={() => setArt(inputArt)}>upload</button> */}
-            <Input type='text' label='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Input label='Description' type='text-area' value={description} onChange={(e) => setDescription(e.target.value)} />
-            <Input type='text' label='Type' value={type} onChange={(e) => setType(e.target.value)} />
-            <Checkbox label='Effect' value={effect} onChange={(e: boolean) => setEffect(e)} />
-            <br />
-            <Input type='number' label='level' value={level} onChange={(e: any) => setLevel(e.target.value)} />
-
-            <Flex>
-                <Button onClick={() => setLevel(level - 1)}>-</Button>
-                <Button onClick={() => setLevel(level + 1)}>+</Button>
-            </Flex>
-
-            <br />
-            <Flex>
-                <Input value={atk} type='number' label='Attack' onChange={(e) => setAtk(e.target.value)} />
-                <Input value={def} type='number' label='Defence' onChange={(e) => setDef(e.target.value)} />
-
-            </Flex>
-
-            <Input
-                label='Upload Image'
-                type='file'
-                // value={art}
-                onChange={(e: any) => setArt(e)} />
-
-            <Button onClick={() => handleSave()}>save</Button>
-
-
-        </Div>
-    );
+      <Input
+        type="text"
+        label="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <Input
+        label="Description"
+        type="text-area"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <Input
+        type="text"
+        label="Type"
+        value={type}
+        onChange={(e) => setType(e.target.value)}
+      />
+      <Checkbox
+        label="Effect"
+        value={effect}
+        onChange={(e: boolean) => setEffect(e)}
+      />
+      <br />
+      <Input
+        type="number"
+        label="level"
+        value={level}
+        onChange={(e: any) => setLevel(e.target.value)}
+      />
+      <Flex>
+        <Button onClick={() => setLevel(level - 1)}>-</Button>
+        <Button onClick={() => setLevel(level + 1)}>+</Button>
+      </Flex>
+      <br />
+      <Flex>
+        <Input
+          value={atk}
+          type="number"
+          label="Attack"
+          onChange={(e) => setAtk(e.target.value)}
+        />
+        <Input
+          value={def}
+          type="number"
+          label="Defence"
+          onChange={(e) => setDef(e.target.value)}
+        />
+      </Flex>
+      <Input
+        label="Upload Image"
+        type="file"
+        // value={art}
+        onChange={(e: any) => setArt(e)}
+      />
+      <Button onClick={() => handleSave()}>save</Button>
+    </Div>
+  );
 };

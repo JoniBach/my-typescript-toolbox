@@ -1,9 +1,7 @@
 import { Routes } from "src/pages";
 
 function App() {
-  return (
-   <Routes />
-  );
+  return <Routes />;
 }
 
 export default App;

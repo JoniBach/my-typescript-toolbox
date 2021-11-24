@@ -27,9 +27,9 @@ export const Charts = () => {
   return (
     <PageContainer>
       {chartType === "pie" ? (
-        <Chart config={pieConfig} data={data01}  type={chartType}/>
+        <Chart config={pieConfig} data={data01} type={chartType} />
       ) : (
-        <Chart config={config} data={data}  type={chartType} />
+        <Chart config={config} data={data} type={chartType} />
       )}
 
       <div style={{ display: "flex" }}>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 export const SubMenu = styled(motion.div)`
-background: #ddd;
-width: 200px;
+  background: #ddd;
+  width: 200px;
 `;
 export const MainMenu = styled(motion.div)`
 box-shadow: 0 0 25px rgb(0 0 0 / 5%);
@@ -27,4 +27,3 @@ border-radius: 20px; */
 
 
 `;
-

@@ -3,14 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input, Output } from "src/components";
 
-
 const PageContainer = styled(motion.div)``;
 
 // type SkateProps = {
 //   children: React.ReactNode;
 // }
-
-
 
 interface Props {
   height: number;
@@ -30,9 +27,9 @@ export const Skate = () => {
       else if (size.height < 190) return 83;
       else if (size.height > 190) return 84;
       else return 0;
-    }
+    };
     const width = () => {
-      if (size.height == 0) return 0; 
+      if (size.height == 0) return 0;
       else if (size.height < 140) return 18.0;
       else if (size.height < 150) return 20;
       else if (size.height < 160) return 22;
@@ -40,10 +37,9 @@ export const Skate = () => {
       else if (size.height < 180) return 22;
       else if (size.height < 190) return 22;
       else if (size.height > 190) return 22;
-      else return 0; 
-    }
-    return {length: length(), width: width()}
-
+      else return 0;
+    };
+    return { length: length(), width: width() };
   };
 
   return (
@@ -54,7 +50,7 @@ export const Skate = () => {
         value={size.height}
         onChange={(e: any) => setSize({ ...size, height: e.target.value })}
       />
-            <Input
+      <Input
         label="Rider Shoe Size (cm)"
         type="number"
         value={size.height}
@@ -70,7 +66,7 @@ export const Skate = () => {
         value={handleCalculations().width}
         description="The Width of the board from edge to edge (down the midde) in cm"
       />
-            <Output
+      <Output
         label="Board wheelbase (cm)"
         value={38}
         description="The distance between the trucks in cm"

@@ -35,7 +35,7 @@ const ChartContainer = styled(motion.div)`
 type ChartProps = {
   data: any;
   config: any;
-  type: any; 
+  type: any;
 };
 
 type GetChartProps = {
@@ -50,7 +50,7 @@ type GetChartProps = {
 };
 
 export const Chart = ({ data, config, type }: ChartProps) => {
-  const { items, xKey} = config;
+  const { items, xKey } = config;
   const [chartContent, setChartContent] = useState(defaultChartContent);
 
   const GetChartGraphic = (item: any) => {
@@ -110,15 +110,15 @@ export const Chart = ({ data, config, type }: ChartProps) => {
         );
       case "radial":
         return (
-        //   <RadialBar
-        //   name={item.id}
-        //   fillOpacity={0.3}
-        //   dataKey={item.id}
-        //   cx="50%"
-        //   cy="50%"
-        //   fill={item.stroke}
-        //   stroke={item.stroke}
-        // />
+          //   <RadialBar
+          //   name={item.id}
+          //   fillOpacity={0.3}
+          //   dataKey={item.id}
+          //   cx="50%"
+          //   cy="50%"
+          //   fill={item.stroke}
+          //   stroke={item.stroke}
+          // />
           <RadialBar
             // minAngle={15}
             label={{ fill: "#666", position: "insideStart" }}
@@ -214,20 +214,30 @@ export const Chart = ({ data, config, type }: ChartProps) => {
         );
       case "radial":
         return (
-          
-          <RadialBarChart 
-          width={730} 
-          height={250} 
-          innerRadius="10%" 
-          outerRadius="80%" 
-          data={data} 
-          startAngle={180} 
-          endAngle={0}
-        >
-          <RadialBar  label={{ fill: '#222', position: 'insideStart' }} background dataKey='uv' />
-          <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
-          <Tooltip />
-        </RadialBarChart>
+          <RadialBarChart
+            width={730}
+            height={250}
+            innerRadius="10%"
+            outerRadius="80%"
+            data={data}
+            startAngle={180}
+            endAngle={0}
+          >
+            <RadialBar
+              label={{ fill: "#222", position: "insideStart" }}
+              background
+              dataKey="uv"
+            />
+            <Legend
+              iconSize={10}
+              width={120}
+              height={140}
+              layout="vertical"
+              verticalAlign="middle"
+              align="right"
+            />
+            <Tooltip />
+          </RadialBarChart>
         );
       default:
         return <div />;

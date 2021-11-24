@@ -12,7 +12,7 @@ const CheckboxContainer = styled(motion.button)`
   background-size: 200% 200%;
   cursor: pointer;
 
-  ${(e: {fill: any}) => {
+  ${(e: { fill: any }) => {
     if (e.fill) {
       return `
       background: linear-gradient(135deg, #0dceb3 0%, #765cf3 100%);
@@ -27,18 +27,16 @@ const CheckboxContainer = styled(motion.button)`
   }}
 `;
 type CheckboxProps = {
- label: string;
- value: any;
- onChange: (event: boolean) => void;
-
-}
-
+  label: string;
+  value: any;
+  onChange: (event: boolean) => void;
+};
 
 export const Checkbox = ({ label, value, onChange }: CheckboxProps) => {
   const [checkboxActive, setcheckboxActive] = useState(value);
   useEffect(() => {
-onChange(checkboxActive)
-  }, [checkboxActive])
+    onChange(checkboxActive);
+  }, [checkboxActive]);
   return (
     <>
       <label>
@@ -49,7 +47,6 @@ onChange(checkboxActive)
           {" "}
         </CheckboxContainer>
         {label}
-
       </label>
     </>
   );

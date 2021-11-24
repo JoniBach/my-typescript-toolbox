@@ -5,12 +5,7 @@ type AppProviderTypes = {
 };
 
 const Providers = ({ children }: AppProviderTypes) => {
-
-  return (
-    <FormProvider>
-        {children}
-    </FormProvider>
-  );
+  return <FormProvider>{children}</FormProvider>;
 };
 
 export default Providers;

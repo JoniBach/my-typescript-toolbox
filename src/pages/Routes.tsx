@@ -10,7 +10,6 @@ type RoutingProps = {
 
 let RoutedPage = ({ path, comp }: RoutingProps) => comp;
 
-
 export function Routes() {
   return (
     <div>

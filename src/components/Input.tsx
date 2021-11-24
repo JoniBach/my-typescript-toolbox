@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "src/components/Button"
+import { Button } from "src/components/Button";
 const FieldContainer = styled(motion.label)`
   display: inline-block;
   width: 100%;
@@ -14,8 +14,7 @@ const FieldContainer = styled(motion.label)`
     padding: 10px;
     width: 100%;
     color: black;
-  background-color: #fff;
-
+    background-color: #fff;
   }
 
   .description {
@@ -47,7 +46,6 @@ const FieldContainer = styled(motion.label)`
     height: 0px;
     color: #444;
     margin-top: 5px;
-
   }
   .file-upload-container {
     display: flex;
@@ -60,75 +58,90 @@ type InputProps = {
   value?: any;
   type: string;
   dissabled?: boolean;
-}
+};
 
 const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
   const ref = useRef(document.createElement("input"));
-  const [state, setstate] = useState(null as any)
+  const [state, setstate] = useState(null as any);
 
   const handleFileUpload = (e: any) => {
-    const file = e.target.files[0]
-    setstate(file)
-  }
+    const file = e.target.files[0];
+    setstate(file);
+  };
 
   useEffect(() => {
     if (state) {
-      onChange(state)
-
+      onChange(state);
     }
-  }, [state])
+  }, [state]);
 
   switch (type) {
-    case 'text-area': return (
-      <textarea
-        className="fields"
-        value={value}
-        onChange={(e: any) => onChange(e)}
-        placeholder={label}
-      />
-    )
-    case 'file': return (
-      <>
-        <motion.div className="label" animate={{ height: state ? 20 : 0 }}>
-          <span>{label}</span>
-        </motion.div>
-        <div className='file-upload-container' >
-
-          <Button onClick={() => ref.current.click()}>{!state ? label : state.name}</Button>
-          <input
-            className="fields"
-            id={label}
-            ref={ref}
-            value={value}
-            style={{ display: 'none' }}
-            onChange={(e) => handleFileUpload(e)}
-            placeholder={label}
-            type={type}
-          />
-        </div>
-      </>
-
-    )
-    default: return (
-      <input
-        className="fields"
-        value={value}
-        onChange={(e) => onChange(e)}
-        placeholder={label}
-        type={type}
-      />
-    )
+    case "text-area":
+      return (
+        <textarea
+          className="fields"
+          value={value}
+          onChange={(e: any) => onChange(e)}
+          placeholder={label}
+        />
+      );
+    case "file":
+      return (
+        <>
+          <motion.div className="label" animate={{ height: state ? 20 : 0 }}>
+            <span>{label}</span>
+          </motion.div>
+          <div className="file-upload-container">
+            <Button onClick={() => ref.current.click()}>
+              {!state ? label : state.name}
+            </Button>
+            <input
+              className="fields"
+              id={label}
+              ref={ref}
+              value={value}
+              style={{ display: "none" }}
+              onChange={(e) => handleFileUpload(e)}
+              placeholder={label}
+              type={type}
+            />
+          </div>
+        </>
+      );
+    default:
+      return (
+        <input
+          className="fields"
+          value={value}
+          onChange={(e) => onChange(e)}
+          placeholder={label}
+          type={type}
+        />
+      );
   }
-}
+};
 
-
-export const Input = ({ label, value, onChange, type, dissabled }: InputProps) => {
+export const Input = ({
+  label,
+  value,
+  onChange,
+  type,
+  dissabled,
+}: InputProps) => {
   return (
     <FieldContainer>
       <motion.div className="label" animate={{ height: value ? 20 : 0 }}>
         <span>{label}</span>
       </motion.div>
-      {<InputType dissabled={dissabled} label={label} value={value} onChange={onChange} type={type} />}
+      {
+        <InputType
+          dissabled={dissabled}
+          label={label}
+          value={value}
+          onChange={onChange}
+          type={type}
+        />
+      }
       <span className="bar" />
     </FieldContainer>
   );
@@ -138,27 +151,32 @@ type OutputProps = {
   label: string;
   value: any;
   description: string;
-
-}
+};
 
 export const Output = ({ value, label, description }: OutputProps) => {
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(false);
   return (
     <FieldContainer>
-      <motion.div className="label" animate={{ height: value && !active ? 20 : 0 }}>
+      <motion.div
+        className="label"
+        animate={{ height: value && !active ? 20 : 0 }}
+      >
         <span>{label}</span>
       </motion.div>
-      <motion.div className="description" animate={{ height: active ? 'auto' : 0 }} >
-        {active &&
-          <span>{label}: </span>
-        }
+      <motion.div
+        className="description"
+        animate={{ height: active ? "auto" : 0 }}
+      >
+        {active && <span>{label}: </span>}
         <i>"{description}"</i>
       </motion.div>
       <div
         className="fields"
         onClick={() => setActive(!active)}
-        style={{ cursor: !active ? 'help' : 's-resize' }}
-      >{value || <span style={{ color: 'grey' }}>{label}</span>}</div>
+        style={{ cursor: !active ? "help" : "s-resize" }}
+      >
+        {value || <span style={{ color: "grey" }}>{label}</span>}
+      </div>
       <span className="bar" />
     </FieldContainer>
   );

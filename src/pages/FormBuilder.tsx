@@ -8,8 +8,16 @@ import { useForm } from "src/contexts/form-context";
 const PageContainer = styled(motion.div)``;
 
 export const FormBuilder = () => {
-  const { resetForm, form, generateForm, renderForm, BuildForm, editForm, saveEdit, cancelEdit } = useForm();
-
+  const {
+    resetForm,
+    form,
+    generateForm,
+    renderForm,
+    BuildForm,
+    editForm,
+    saveEdit,
+    cancelEdit,
+  } = useForm();
 
   return (
     <PageContainer>
@@ -18,7 +26,7 @@ export const FormBuilder = () => {
       <Button onClick={() => editForm()}>Edit</Button>
       <Button onClick={() => saveEdit()}>Save</Button>
       <Button onClick={() => cancelEdit()}>Cancel</Button>
-  {renderForm()}
+      {renderForm()}
     </PageContainer>
   );
 };

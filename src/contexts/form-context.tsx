@@ -32,7 +32,7 @@ export const FormProvider: FC = ({ children }) => {
 
   const renderForm = () => {
     if (edit) return BuildForm();
-    if (form.length !== 0) return <Form layoutData={form}/>;
+    if (form.length !== 0) return <Form layoutData={form} />;
   };
 
   const resetForm = () => {
@@ -70,11 +70,12 @@ export const FormProvider: FC = ({ children }) => {
     setNewForm(arr);
   };
 
-
-
   const addGroup = (key: any, e: any) => {
     e.preventDefault();
-    setNewForm([...newForm, { key: key, data: [{ key: "initial text 1", type: 'text' }] }]);
+    setNewForm([
+      ...newForm,
+      { key: key, data: [{ key: "initial text 1", type: "text" }] },
+    ]);
   };
 
   const addField = (newKey: any, e: any) => {
@@ -91,23 +92,22 @@ export const FormProvider: FC = ({ children }) => {
     //   target,
     //   data: [Object.create(target.data), { key: `new text ${target.data.length+1}`, type: 'text' }],
 
-    const newObj = { 
-      ...target, 
+    const newObj = {
+      ...target,
       data: [
         ...target.data,
-        { key: `new text ${ target.data.length+1}`, type: 'text' },]
+        { key: `new text ${target.data.length + 1}`, type: "text" },
+      ],
     };
 
     // };
     // applying the changes to the orriginal array
     arr.splice(targetIndex, 0, newObj);
 
-console.log(arr)
+    console.log(arr);
 
     // setting state
     setNewForm(arr);
-
-
   };
 
   const updateField = (key: any, fieldKey: any, content: any) => {
@@ -151,13 +151,7 @@ console.log(arr)
                 />
               </>
             ))}
-            <Button
-              onClick={(e) =>
-                addField(group.key, e)
-              }
-            >
-              new field
-            </Button>
+            <Button onClick={(e) => addField(group.key, e)}>new field</Button>
             <hr />
           </>
         ))}

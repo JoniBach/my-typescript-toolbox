@@ -1,42 +1,35 @@
-export const options2 = [
-    "bar",
-    "line",
-    "area",
-    "pie",
-    "radar",
-  ];
+export const options2 = ["bar", "line", "area", "pie", "radar"];
 
-  export const config = {
-    width: 500,
-    height: 500,
-    xKey: "test",
-    margin: {
-      top: 5,
-      right: 30,
-      left: 20,
-      bottom: 5,
-    },
-    items: [
-      { stroke: "#8884d8", id: "a" },
-      { stroke: "#82ca9d", id: "b" },
-      { stroke: "#01abdd", id: "c" },
-    ],
-  };
+export const config = {
+  width: 500,
+  height: 500,
+  xKey: "test",
+  margin: {
+    top: 5,
+    right: 30,
+    left: 20,
+    bottom: 5,
+  },
+  items: [
+    { stroke: "#8884d8", id: "a" },
+    { stroke: "#82ca9d", id: "b" },
+    { stroke: "#01abdd", id: "c" },
+  ],
+};
 
-  export const pieConfig = {
-    width: 500,
-    height: 500,
-    outerRadius: 200,
-    dataKey: "value",
-    stroke: "#8884d8",
-    margin: {
-      top: 5,
-      right: 30,
-      left: 20,
-      bottom: 5,
-    },
-  };
-
+export const pieConfig = {
+  width: 500,
+  height: 500,
+  outerRadius: 200,
+  dataKey: "value",
+  stroke: "#8884d8",
+  margin: {
+    top: 5,
+    right: 30,
+    left: 20,
+    bottom: 5,
+  },
+};
 
 export const data01 = [
   { name: "Group A", value: 400 },
