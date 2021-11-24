@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { query } from "../../utils/utils";
 
 export const Card = styled(motion.div)`
   background: #fff;

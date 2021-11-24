@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useState } from "react";
 const Btn = styled(motion.button)`
   width: 100%;
   border: hidden;

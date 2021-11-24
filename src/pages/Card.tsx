@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, Form, Input, Output } from "src/components";
+import { Button, Input } from "src/components";
 import blank from "../utils/CardImages/yugioh-card-template_base.png";
 import trapFilter from "../utils/CardImages/yugioh-card-template_trap.png";
 import spellFilter from "../utils/CardImages/yugioh-card-template_spell.png";

@@ -29,7 +29,9 @@
     "compose": "docker-compose up -d --build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codemod:imports": "jscodeshift  -t ./src/codemods/remove-imports.js  --extensions=tsx --parser=tsx ./src/components -p",
+    "codemod:logs": "jscodeshift  -t ./src/codemods/remove-logs.js  --extensions=tsx --parser=tsx ./src/components -p"
   },
   "eslintConfig": {
     "extends": [

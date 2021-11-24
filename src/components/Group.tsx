@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "src/components/Button";
 
 const GroupContainer = styled(motion.div)`
   display: inline-block;

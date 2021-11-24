@@ -1,6 +1,6 @@
 import { Backdrop, Button, MainMenu, SubMenu } from "src/components";
 import { Page } from "src/components";
-import { Router, RouteComponentProps, Link } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import { routes } from "src/configs";
 
 type RoutingProps = {

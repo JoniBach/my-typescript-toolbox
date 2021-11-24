@@ -19,13 +19,11 @@ import {
   RadarChart,
   RadialBar,
   RadialBarChart,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { connect } from "http2";
 
 const ChartContainer = styled(motion.div)`
   height: 100px;
