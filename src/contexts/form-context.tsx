@@ -1,6 +1,6 @@
 import { create } from "domain";
 import React, { FC, useContext, useState } from "react";
-import { Button, Form, Input } from "src/components";
+import { Button, Form, Input, MultiPage } from "src/components";
 
 type ContextProps = {
   form: any;
@@ -32,7 +32,7 @@ export const FormProvider: FC = ({ children }) => {
 
   const renderForm = () => {
     if (edit) return BuildForm();
-    if (form.length !== 0) return <Form layoutData={form} />;
+    if (form.length !== 0) return <MultiPage data={form} />;
   };
 
   const resetForm = () => {

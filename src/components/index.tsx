@@ -4,3 +4,7 @@ export * from "./Menu";
 export * from "./Button";
 export * from "./Input";
 export * from "./Form";
+export * from "./Nav";
+export * from "./Template";
+export * from "./MultiPage";
+

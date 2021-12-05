@@ -5,7 +5,9 @@ import { Button } from "src/components";
 import { Chart } from "src/components/Chart";
 import { config, data, data01, pieConfig } from "src/configs/charts";
 
-const PageContainer = styled(motion.div)``;
+const PageContainer = styled(motion.div)`
+
+`;
 
 interface Props {
   height: number;

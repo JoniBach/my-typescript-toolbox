@@ -1,7 +1,7 @@
 import { Backdrop, Button, MainMenu, SubMenu } from "src/components";
 import { Page } from "src/components";
 import { Router, Link } from "@reach/router";
-import { routes } from "src/configs";
+import { playground } from "src/configs";
 
 type RoutingProps = {
   path: any;
@@ -15,8 +15,8 @@ export function Routes() {
     <div>
       <Backdrop>
         <Page>
-          <Links routes={routes} />
-          <Pages routes={routes} />
+          <Links routes={playground} /> 
+          <Pages routes={playground} />
         </Page>
       </Backdrop>
     </div>

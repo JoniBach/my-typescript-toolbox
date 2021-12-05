@@ -9,7 +9,6 @@ const GroupContainer = styled(motion.div)`
 const ContentBox = styled(motion.div)`
   margin: 5px;
   padding: 10px;
-  border: 5px dotted #aaa;
   border-radius: 20px;
 `;
 
@@ -21,8 +20,6 @@ type InputProps = {
 export const Group = ({ label, children }: InputProps) => {
   return (
     <GroupContainer>
-      {label}
-
       <ContentBox>{children}</ContentBox>
     </GroupContainer>
   );

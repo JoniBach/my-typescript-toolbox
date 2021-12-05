@@ -1,6 +1,9 @@
 import { Card, Skate, Test, Charts, FormBuilder } from "src/pages";
+import React from 'react';
+import { MultiPage, Template } from "src/components";
+import { formBuilderData } from "./formBuilder";
 
-export const routes = [
+export const playground = [
   {
     component: <Skate />,
     link: "/skate",
@@ -25,5 +28,10 @@ export const routes = [
     component: <FormBuilder />,
     link: "/form-builder",
     label: "Form Builder",
+  },
+  {
+    component: <MultiPage data={formBuilderData} />,
+    link: "/pages",
+    label: "Pages",
   },
 ];

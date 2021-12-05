@@ -19,6 +19,7 @@ export const Test = () => {
     <PageContainer>
       {/* <button onClick={() => form({key: 'test', data: ['another test']}).create()}>test</button> */}
       <Form layoutData={layout} />
+      
     </PageContainer>
   );
 };
