@@ -7,4 +7,6 @@ export * from "./Form";
 export * from "./Nav";
 export * from "./Template";
 export * from "./MultiPage";
+export * from "./MultiSelect";
+export * from "./FormItem";
 

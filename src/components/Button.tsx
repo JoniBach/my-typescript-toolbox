@@ -85,6 +85,7 @@ type ButtonProps = {
   animate?: any;
   initial?: any;
   selected?: boolean;
+  disabled?: boolean;
 };
 
 export const Button = ({
@@ -96,6 +97,7 @@ export const Button = ({
   animate,
   initial,
   selected,
+  disabled,
 }: ButtonProps) => {
   return (
     <Btn
@@ -104,10 +106,13 @@ export const Button = ({
       onClick={onClick}
       className="active selected"
       style={{...style, backgroundPosition: selected ?  '0 100%' : '0 0' }}
+      disabled={disabled}
       {...className}
     >
-
-      <div className="slider" />
+{
+  disabled || <div className="slider" />
+}
+      
 
       <div style={{ width: active ? "100%" : "0%" }} className="active">
         <div className="overlay" />

@@ -113,9 +113,7 @@ const FormComponents = ({ layoutData, values, onSubmit }: FormProps) => {
 export const Form = ({ layoutData, locked }: FormProps) => {
   return (
     <FormContainer>
-      {/* <FormProvider> */}
       <FormComponents layoutData={layoutData} />
-      {/* </FormProvider> */}
     </FormContainer>
   );
 };

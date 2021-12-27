@@ -1,6 +1,8 @@
 import { create } from "domain";
 import React, { FC, useContext, useState } from "react";
-import { Button, Form, Input, MultiPage } from "src/components";
+import { Button, Form, Input, MultiPage, MultiSelect, SingleSelect } from "src/components";
+import { inputTypes } from "src/configs/formBuilder";
+// import { v4 as uuid } from 'uuid';
 
 type ContextProps = {
   form: any;
@@ -32,7 +34,7 @@ export const FormProvider: FC = ({ children }) => {
 
   const renderForm = () => {
     if (edit) return BuildForm();
-    if (form.length !== 0) return <MultiPage data={form} />;
+    if (form.length !== 0) return <MultiPage data={form} actions />;
   };
 
   const resetForm = () => {
@@ -80,18 +82,9 @@ export const FormProvider: FC = ({ children }) => {
 
   const addField = (newKey: any, e: any) => {
     e.preventDefault();
-
-    // isolating the group
     const target = newForm.filter((item: any) => item.key === newKey)[0];
-    // getting the remaining array
     const arr = newForm.filter((item: any) => item.key !== newKey);
-    // fetching the group index
     const targetIndex = newForm.findIndex((item: any) => item.key === newKey);
-    // create the new object with a new item in an array
-    // const newObj = {
-    //   target,
-    //   data: [Object.create(target.data), { key: `new text ${target.data.length+1}`, type: 'text' }],
-
     const newObj = {
       ...target,
       data: [
@@ -99,38 +92,57 @@ export const FormProvider: FC = ({ children }) => {
         { key: `new text ${target.data.length + 1}`, type: "text" },
       ],
     };
-
-    // };
-    // applying the changes to the orriginal array
     arr.splice(targetIndex, 0, newObj);
-
-    console.log(arr);
-
-    // setting state
     setNewForm(arr);
   };
 
-  const updateField = (key: any, fieldKey: any, content: any) => {
-    // isolating the group
+  const updateField = (key: any, fieldKey: any, content: any, inputType?: any) => {
     const target = newForm.filter((item: any) => item.key === key)[0];
-    // getting the remaining array
-    const arr = newForm.filter((item: any) => item.key !== key);
-    // fetching the group index
+    const targetField = target.data.filter(
+      (item: any) => item.key === fieldKey
+    )[0];
+    const newTargetField = inputType ? { key: targetField.key, type: inputType } : { key: content, type: targetField.type };
+    const fieldIndex = target.data.findIndex(
+      (item: any) => item.key === fieldKey
+    );
+    const targetData = target.data;
+    const arr = targetData.filter((item: any) => item.key !== fieldKey);
+    arr.splice(fieldIndex, 0, newTargetField);
+    const newTarget = { key: target.key, data: arr };
+    const newArr = newForm.filter((item: any) => item.key !== key);
     const targetIndex = newForm.findIndex((item: any) => item.key === key);
-    // updating the target group
-    const newObj = { ...target, key: content };
-    // applying the changes to the orriginal array
-    arr.splice(targetIndex, 0, newObj);
-    // setting state
-    setNewForm(arr);
+    newArr.splice(targetIndex, 0, newTarget);
+    setNewForm(newArr);
   };
 
-  // console.log(newForm)
+  const FormItem = (field: any, group: any, updateField: any) => {
+    return (
+      <div style={{ display: "flex" }}>
+        <Input
+          value={field.key}
+          onChange={(e) => updateField(group.key, field.key, e.target.value)}
+          label="Field Name"
+          type="text"
+        />
+        <SingleSelect
+          width="40%"
+          label="Type"
+          data={inputTypes}
+          value={field.type}
+          onChange={(e: any) => updateField(group.key, field.key, '', e)}
+        />
+      </div>
+    );
+  };
+
+  const handleAddField = (key: any, e: any) => {
+    e.preventDefault();
+    addField(key, e);
+  };
 
   const BuildForm = () => {
     return (
       <div>
-        {/* <Form layoutData={form} /> */}
         {newForm?.map((group: any, index: any) => (
           <>
             <Input
@@ -139,28 +151,30 @@ export const FormProvider: FC = ({ children }) => {
               label="Group Name"
               type="text"
             />
-            {group?.data?.map((field: any, fieldIndex: any) => (
-              <>
-                <Input
-                  value={field.key}
-                  onChange={(e) =>
-                    updateField(group.key, field.key, e.target.value)
-                  }
-                  label="Field Name"
-                  type="text"
-                />
-              </>
-            ))}
-            <Button onClick={(e) => addField(group.key, e)}>new field</Button>
+            {group?.data?.map((field: any, fieldIndex: any) =>
+              FormItem(field, group, updateField)
+            )}
+            <Button onClick={(e: any) => handleAddField(group.key, e)}>
+              new field
+            </Button>
             <hr />
           </>
         ))}
         {/* <Input onChange={() => setNewForm([])} label='new' value={null} type='string'/> */}
         <Button
-          onClick={(e) => addGroup(`new ${(newForm.length + 1).toString()}`, e)}
+          onClick={(e: any) =>
+            addGroup(`new ${(newForm.length + 1).toString()}`, e)
+          }
         >
           new group
         </Button>
+        {/* <MultiSelect
+          width="40%"
+          label="Type"
+          data={inputTypes}
+          value={field.type}
+          onChange={(e: any) => updateField(group.key, field.key, '', e)}
+        /> */}
       </div>
     );
   };

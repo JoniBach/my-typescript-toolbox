@@ -15,6 +15,7 @@ const FieldContainer = styled(motion.label)`
     width: 100%;
     color: black;
     background-color: #fff;
+    box-sizing: border-box;
   }
 
   .description {
@@ -58,9 +59,10 @@ type InputProps = {
   value?: any;
   type: string;
   dissabled?: boolean;
+  width?: any;
 };
 
-const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
+const InputType = ({ label, value, onChange, type, dissabled, width }: InputProps) => {
   const ref = useRef(document.createElement("input"));
   const [state, setstate] = useState(null as any);
 
@@ -92,7 +94,7 @@ const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
             <span>{label}</span>
           </motion.div>
           <div className="file-upload-container">
-            <Button onClick={() => ref.current.click()}>
+            <Button style={{width: width || '100%'}} onClick={() => ref.current.click()}>
               {!state ? label : state.name}
             </Button>
             <input
@@ -100,7 +102,7 @@ const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
               id={label}
               ref={ref}
               value={value}
-              style={{ display: "none" }}
+              style={{ display: "none", }}
               onChange={(e) => handleFileUpload(e)}
               placeholder={label}
               type={type}
@@ -112,6 +114,7 @@ const InputType = ({ label, value, onChange, type, dissabled }: InputProps) => {
       return (
         <input
           className="fields"
+          style={{width: width || '100%'}}
           value={value}
           onChange={(e) => onChange(e)}
           placeholder={label}
@@ -127,6 +130,7 @@ export const Input = ({
   onChange,
   type,
   dissabled,
+  width
 }: InputProps) => {
   return (
     <FieldContainer>
@@ -135,6 +139,7 @@ export const Input = ({
       </motion.div>
       {
         <InputType
+        width={width}
           dissabled={dissabled}
           label={label}
           value={value}
@@ -142,7 +147,7 @@ export const Input = ({
           type={type}
         />
       }
-      <span className="bar" />
+      <span className="bar" style={{maxWidth: width || '100%'}}/>
     </FieldContainer>
   );
 };

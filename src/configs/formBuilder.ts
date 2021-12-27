@@ -47,3 +47,11 @@ export const formBuilderData = [
     ],
   },
 ];
+
+export const inputTypes = [
+  'text',
+  'file',
+  'number',
+  'button',
+  'text-area',
+]
